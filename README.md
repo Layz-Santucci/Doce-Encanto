@@ -1,59 +1,58 @@
-# LojaDoces
+# LojaDoces 🍬
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.8.
+Projeto de e-commerce desenvolvido com *Angular*.
 
-## Development server
+## 📋 Pré-requisitos
 
-To start a local development server, run:
+Antes de começar, certifique-se de ter o *Node.js* e o *npm* instalados em sua máquina.
 
-```bash
-ng serve
-```
+### 📥 Instalando o Node.js (Caso não tenha)
+Se você ainda não possui o Node.js, você pode instalá-lo de duas formas:
+* *Site Oficial:* Baixe e instale a versão LTS recomendada diretamente em [nodejs.org](https://nodejs.org/).
+* *NVM (Node Version Manager - Recomendado para gerenciar múltiplas versões):*
+  * *Linux/macOS:*
+bash
+    curl -o- [https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh](https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh) | bash
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+  * *Windows:* Utilize o [nvm-windows](https://github.com/coreybutler/nvm-windows).
 
-## Code scaffolding
+Para verificar se você já os possui, execute no seu terminal:
+bash
+node -v
+npm -v
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-```bash
-ng generate component component-name
-```
+🚀 Como Executar o Projeto
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+bash
+git clone https://github.com/Layz-Santucci/Doce-Encanto
+cd Doce-Encanto
 
-```bash
-ng generate --help
-```
 
-## Building
 
-To build the project run:
+Siga os passos abaixo para configurar e rodar o ambiente de desenvolvimento local:
 
-```bash
+Instale as dependências:
+
+bash
+npm install
+
+
+Compilar para Produção:
+
+bash
 ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+Inicie o servidor de desenvolvimento:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+bash
+ng serve
 
-```bash
-ng test
-```
 
-## Running end-to-end tests
+Acesse a aplicação:
+Abra o seu navegador e acesse:
 
-For end-to-end (e2e) testing, run:
+👉 http://localhost:4200/
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Nota: A aplicação será recarregada automaticamente sempre que você modificar qualquer arquivo do código-fonte.
