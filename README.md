@@ -1,4 +1,4 @@
-# LojaDoces 🍬
+# Doce Encanto 🍬
 
 Projeto de e-commerce desenvolvido com *Angular*.
 
