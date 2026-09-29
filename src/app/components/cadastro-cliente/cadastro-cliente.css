@@ -1,0 +1,57 @@
+/* ===== Seletor por TAG =====
+   Aplica a TODOS os elementos <input> deste componente */
+input {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+input:focus {
+  border-color: var(--rosa-doce, #ff6f91);
+  box-shadow: 0 0 0 0.15rem rgba(255, 111, 145, 0.25);
+}
+
+/* ===== Seletor por ID =====
+   Aplica apenas ao elemento único #paginaCadastro */
+#paginaCadastro {
+  background-color: #fff9fb;
+  border-radius: 16px;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Também usando id no campo de nome, para destaque específico */
+#nomeCompleto {
+  font-weight: 600;
+}
+
+/* ===== Seletor por CLASSE (apelido) =====
+   Aplica a todos os elementos com class="campo-cadastro",
+   podendo repetir em vários lugares */
+.campo-cadastro {
+  margin-bottom: 1.1rem;
+}
+
+.form-cadastro {
+  border-radius: 14px;
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 576px) {
+  #paginaCadastro {
+    padding: 1rem;
+  }
+
+  .form-cadastro {
+    padding: 1.5rem !important;
+  }
+
+  .form-cadastro h3 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .form-cadastro {
+    padding: 3rem;
+  }
+}

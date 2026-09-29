@@ -1,0 +1,21 @@
+<div class="container py-4">
+  <div class="d-flex align-items-center mb-4">
+    <a routerLink="/" class="btn btn-outline-secondary me-3 d-flex align-items-center gap-1">
+      <i class="bi bi-arrow-left"></i> &larr; Voltar
+    </a>
+    <h2 class="mb-0">Todos os Produtos</h2>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-6 col-md-4 col-lg-3" *ngFor="let produto of produtos">
+      <div class="card h-100 card-vitrine">
+        <img [src]="produto.imagem" class="card-img-top" [alt]="produto.nome">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ produto.nome }}</h5>
+          <p class="card-text text-muted">R$ {{ produto.preco.toFixed(2) }}</p>
+          <a [routerLink]="['/produto', produto.idProduto]" class="btn btn-doces">Ver Produto</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

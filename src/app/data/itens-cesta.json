@@ -1,0 +1,26 @@
+[
+    {
+        "idProduto": 1,
+        "nome": "Brigadeiro Gourmet",
+        "preco": 3.5,
+        "quantidade": 4,
+        "imagem": "https://placehold.co/120x120?text=Brigadeiro"
+     },
+
+    {
+        "idProduto": 2,
+        "nome": "Brownie de Chocolate",
+        "preco": 6.0,
+        "quantidade": 2,
+        "imagem": "https://placehold.co/120x120?text=Brownie"
+    },
+
+    {
+        "idProduto": 3,
+        "nome": "Cupcake Recheado",
+        "preco": 7.5,
+        "quantidade": 3,
+        "imagem": "https://placehold.co/120x120?text=Cupcake"
+    }
+
+]

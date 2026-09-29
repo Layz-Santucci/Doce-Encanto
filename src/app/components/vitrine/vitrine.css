@@ -1,0 +1,110 @@
+/* ============================================
+   AULA 1: Variáveis de cor
+   Definir cores no :root deixa fácil trocar a
+   paleta inteira mudando só um lugar.
+============================================ */
+:root {
+  --rosa-doce: #ff6f91;
+  --rosa-escuro: #d9436d;
+  --creme: #fff5f7;
+  --marrom-choco: #6b3e2e;
+}
+
+/* ============================================
+   AULA 2: Cor de fundo sólida (background-color)
+   Usada em seções simples, sem imagem.
+============================================ */
+.fundo-secao {
+  background-image: url('/doces/Fundo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ============================================
+   AULA 3: Cor do texto (color)
+============================================ */
+.logo-vitrine {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+/* ============================================
+   AULA 4: Gradiente como fundo (linear-gradient)
+   Mistura duas ou mais cores em uma direção.
+   Aqui a navbar tem um gradiente diagonal.
+============================================ */
+.navbar-vitrine {
+  background: linear-gradient(90deg, var(--rosa-escuro), var(--rosa-doce));
+  padding: 0.8rem 0;
+}
+
+/* ============================================
+   AULA 5: Imagem de fundo (background-image)
+   Junto com um gradiente escuro por cima, para
+   o texto branco ficar legível sobre a foto.
+============================================ */
+.hero-vitrine {
+  min-height: 60vh;
+  background-image:
+    linear-gradient(rgba(107, 62, 46, 0.6), rgba(107, 62, 46, 0.6)),
+    url('/doces/Capa_doces.png');
+  background-size: cover;       /* a imagem cobre toda a área */
+  background-position: center;  /* centraliza a imagem */
+  background-repeat: no-repeat; /* não repete a imagem em mosaico */
+}
+
+/* ============================================
+   AULA 6: Imagens dentro de cards (tag <img>)
+   object-fit controla como a imagem se encaixa
+   sem distorcer.
+============================================ */
+.card-vitrine img {
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-vitrine {
+  border: none;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.card-vitrine:hover {
+  transform: translateY(-5px);
+}
+
+/* ============================================
+   AULA 7: Botão personalizado com cor sólida
+============================================ */
+.btn-doce {
+  background-color: var(--rosa-doce);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 30px;
+}
+
+.btn-doce:hover {
+  background-color: var(--rosa-escuro);
+  color: #fff;
+}
+
+/* ============================================
+   AULA 8: Título com cor e fonte diferente
+============================================ */
+.titulo-secao {
+  color: var(--rosa-escuro);
+  font-weight: bold;
+}
+
+/* ============================================
+   AULA 9: Rodapé com cor de fundo sólida escura
+============================================ */
+.footer-vitrine {
+  background-color: var(--marrom-choco);
+}

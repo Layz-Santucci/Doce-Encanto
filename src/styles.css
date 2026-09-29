@@ -1,0 +1,31 @@
+:root {
+  --rosa-doce: #ff6f91;
+  --rosa-escuro: #d9436d;
+  --creme: #fff5f7;
+  --marrom-choco: #6b3e2e;
+}
+
+.navbar-vitrine {
+  background: linear-gradient(90deg, var(--rosa-escuro), var(--rosa-doce));
+  padding: 0.8rem 0;
+}
+
+.logo-vitrine {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+.btn-doce {
+  background-color: var(--rosa-doce);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 30px;
+}
+
+.btn-doce:hover {
+  background-color: var(--rosa-escuro);
+  color: #fff;
+}

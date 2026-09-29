@@ -1,0 +1,30 @@
+<div class="container my-4">
+  <h2 class="mb-4 text-center">Meus Pedidos</h2>
+
+  <table class="table table-hover align-middle">
+    <thead class="table-light">
+      <tr>
+        <th>Pedido</th>
+        <th>Data</th>
+        <th>Status</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pedido of pedidos">
+        <td>#{{ pedido.id }}</td>
+        <td>{{ pedido.data }}</td>
+        <td>
+          <span class="badge bg-secondary">{{ pedido.status }}</span>
+        </td>
+        <td>R$ {{ pedido.total.toFixed(2) }}</td>
+        <td>
+          <a [routerLink]="['/pedido', pedido.id]" class="btn btn-sm btn-outline-primary">
+            Detalhes
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

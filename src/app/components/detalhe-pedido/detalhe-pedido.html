@@ -1,0 +1,23 @@
+<div class="container mt-4" *ngIf="pedido">
+  <h2>Pedido #{{ pedido.id }}</h2>
+  <p class="text-muted">Data: {{ pedido.data }} | Status: {{ pedido.status }}</p>
+
+  <ul class="list-group mb-3">
+    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of pedido.itens">
+      <div>
+        <h6 class="my-0">{{ item.nome }}</h6>
+        <small class="text-muted">Quantidade: {{ item.quantidade }}</small>
+      </div>
+      <span class="text-muted">R$ {{ (item.preco * item.quantidade) | number:'1.2-2' }}</span>
+    </li>
+  </ul>
+
+  <h4>Total: R$ {{ pedido.total | number:'1.2-2' }}</h4>
+  
+  <a routerLink="/pedidos" class="btn btn-doces mt-3">Voltar aos Pedidos</a>
+</div>
+
+<div class="container mt-4" *ngIf="!pedido">
+  <p>Pedido não encontrado.</p>
+  <a routerLink="/pedidos" class="btn btn-doces">Voltar aos Pedidos</a>
+</div>

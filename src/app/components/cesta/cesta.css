@@ -1,0 +1,14 @@
+#paginaCesta {
+  max-width: 900px;
+}
+
+.card img {
+  max-height: 90px;
+  object-fit: cover;
+}
+
+@media (max-width: 576px) {
+  .card-title {
+    font-size: 0.95rem;
+  }
+}

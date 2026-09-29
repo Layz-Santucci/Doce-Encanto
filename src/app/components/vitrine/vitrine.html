@@ -1,0 +1,34 @@
+
+<!-- Banner principal com imagem de fundo -->
+<header class="hero-vitrine d-flex align-items-center">
+  <div class="container text-center text-white">
+    <h1 class="display-4 fw-bold">Doces artesanais feitos com carinho</h1>
+    <p class="lead mb-4">Navegue pela vitrine e descubra nossos doces</p>
+    <a routerLink="/busca" class="btn btn-lg btn-doce">Ver todos os produtos</a>
+  </div>
+</header>
+
+<!-- Grade de produtos -->
+<section class="py-5 fundo-secao">
+  <div class="container">
+    <h2 class="text-center mb-5 titulo-secao">Mais Pedidos</h2>
+    <div class="row g-4">
+      <div class="col-6 col-md-4 col-lg-3" *ngFor="let produto of produtos">
+        <div class="card h-100 card-vitrine">
+          <img [src]="produto.imagem" class="card-img-top" [alt]="produto.nome">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ produto.nome }}</h5>
+            <p class="card-text text-muted">R$ {{ produto.preco.toFixed(2) }}</p>
+            <a [routerLink]="['/produto', produto.idProduto]" class="btn btn-doce w-100">
+              Ver Produto
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Rodapé -->
+<footer class="py-4 footer-vitrine text-white text-center">
+  <p class="mb-0">&copy; 2026 Doce Encanto — Todos os direitos reservados</p>
+</footer>

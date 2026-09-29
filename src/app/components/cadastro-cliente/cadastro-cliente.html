@@ -1,0 +1,36 @@
+<!-- id usado no container principal (seletor por id no CSS) -->
+<div class="container my-5" id="paginaCadastro">
+  <div class="card p-4 shadow-sm mx-auto form-cadastro" style="max-width: 500px;">
+    <h3 class="text-center mb-4">Criar Conta</h3>
+
+    <div class="alert alert-danger py-2" *ngIf="erro">{{ erro }}</div>
+
+    <!-- classe "campo-cadastro" repetida em cada grupo (seletor por classe / apelido) -->
+    <div class="mb-3 campo-cadastro">
+      <label for="nomeCompleto" class="form-label">Nome completo</label>
+      <input id="nomeCompleto" type="text" class="form-control" [(ngModel)]="nomeCompleto">
+    </div>
+
+    <div class="mb-3 campo-cadastro">
+      <label for="email" class="form-label">E-mail</label>
+      <input id="email" type="email" class="form-control" [(ngModel)]="email">
+    </div>
+
+    <div class="mb-3 campo-cadastro">
+      <label for="telefone" class="form-label">Telefone</label>
+      <input id="telefone" type="tel" class="form-control" [(ngModel)]="telefone">
+    </div>
+
+    <div class="mb-3 campo-cadastro">
+      <label for="senha" class="form-label">Senha</label>
+      <input id="senha" type="password" class="form-control" [(ngModel)]="senha">
+    </div>
+
+    <div class="mb-4 campo-cadastro">
+      <label for="confirmarSenha" class="form-label">Confirmar senha</label>
+      <input id="confirmarSenha" type="password" class="form-control" [(ngModel)]="confirmarSenha">
+    </div>
+
+    <button class="btn btn-doce w-100" (click)="cadastrar()">Cadastrar</button>
+  </div>
+</div>
