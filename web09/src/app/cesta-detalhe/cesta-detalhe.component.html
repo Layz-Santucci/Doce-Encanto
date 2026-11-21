@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let item of cesta.itens">
+    <span>{{ item.nome }} - {{ item.quantidade }}x</span>
+    <button type="button" class="btn-remover" (click)="removerItem(item)" title="Remover item">
+      X
+    </button>
+  </li>
+</ul>
