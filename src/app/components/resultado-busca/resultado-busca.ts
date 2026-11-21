@@ -3,13 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { Produto } from '../../models/produto';
+import { ProdutoService } from '../../service/produto-service';
 
-interface Produto {
-  idProduto: number;
-  nome: string;
-  preco: number;
-  imagem: string;
-}
+
 
 @Component({
   selector: 'app-resultado-busca',
@@ -19,20 +16,36 @@ interface Produto {
   templateUrl: './resultado-busca.html'
 })
 export class ResultadoBusca implements OnInit {
-  termo = '';
+  termo: string = '';
+  produtos: Produto[] = [];
+  mensagem: string = '';
 
-  produtos: Produto[] = [
-    { idProduto: 1, nome: 'Brigadeiro Gourmet', preco: 3.50, imagem: 'doces/Brigadeiro.jpg' },
-    { idProduto: 2, nome: 'Brownie de Chocolate', preco: 6.00, imagem: 'doces/Brownie.jpg' },
-    { idProduto: 3, nome: 'Cupcake Recheado', preco: 7.50, imagem: 'doces/Cupcake.jpg' },
-    { idProduto: 4, nome: 'Pavê de Morango', preco: 12.00, imagem: 'doces/Pavê .jpg' }
-  ];
-
-  constructor(private route: ActivatedRoute) {}
+constructor(private route: ActivatedRoute, private service: ProdutoService) {}
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
       this.termo = params.get('q') || '';
+      this.carregarProdutos();
+    });
+  }
+
+  carregarProdutos(): void {
+    this.mensagem = '';
+
+    const requisicao = this.termo
+    ? this.service.fazerBusca(this.termo)
+    : this.service.carregarVitrine();
+
+    requisicao.subscribe({
+      next:(dados) => {
+        this.produtos = dados;
+        if (this.produtos.length === 0){
+          this.mensagem = 'Nenhum produto encontrado.';
+        }
+      },
+      error: () => {
+        this.mensagem = 'Ocorreu um erro, tente mais tarde!';
+      }
     });
   }
 }

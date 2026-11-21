@@ -18,8 +18,8 @@
           <img [src]="produto.imagem" class="card-img-top" [alt]="produto.nome">
           <div class="card-body text-center">
             <h5 class="card-title">{{ produto.nome }}</h5>
-            <p class="card-text text-muted">R$ {{ produto.preco.toFixed(2) }}</p>
-            <a [routerLink]="['/produto', produto.idProduto]" class="btn btn-doce w-100">
+            <p class="card-text text-muted"> {{ produto.valor | currency: 'BRL'}}</p>
+            <a [routerLink]="['/produto', produto.codigo]" class="btn btn-doce w-100">
               Ver Produto
             </a>
           </div>
