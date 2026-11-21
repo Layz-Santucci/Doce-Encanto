@@ -1,13 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Produto } from '../../models/produto';
 import { CommonModule } from '@angular/common';
+import { Cesta } from '../../models/cesta';
 import { RouterModule } from '@angular/router';
+import { ProdutoService } from '../../service/produto-service';
 
-interface ProdutoVitrine {
-  idProduto: number;
-  nome: string;
-  preco: number;
-  imagem: string;
-}
 
 @Component({
   selector: 'app-vitrine',
@@ -16,11 +13,22 @@ interface ProdutoVitrine {
   styleUrl: './vitrine.css',
   templateUrl: './vitrine.html',
 })
-export class Vitrine {
-  produtos: ProdutoVitrine[] = [
-    { idProduto: 1, nome: 'Brigadeiro Gourmet', preco: 3.50, imagem: 'doces/Brigadeiro.jpg' },
-    { idProduto: 2, nome: 'Brownie de Chocolate', preco: 6.00, imagem: 'doces/Brownie.jpg' },
-    { idProduto: 3, nome: 'Cupcake Recheado', preco: 7.50, imagem: 'doces/Cupcake.jpg' },
-    { idProduto: 4, nome: 'Pavê de Morango', preco: 12.00, imagem: 'doces/Pavê .jpg' }
-  ];
+export class Vitrine implements OnInit{
+  mensagem : string = "";
+  produtos: Produto[] = [];
+
+  constructor(private service: ProdutoService) {}
+
+  ngOnInit(){
+    this.service.carregarVitrine().subscribe({
+      next:(dados) =>{ //se der certo vamos realizar o proximo passo
+        this.produtos = dados;
+        if (this.produtos.length <=0) this.mensagem = "Não existem produtos na vitrine!";
+      },
+      error: (err) => {
+        this.mensagem = "Ocorreu um erro, tente mais tarde!";
+      }
+    })
+  }
+   
 }
