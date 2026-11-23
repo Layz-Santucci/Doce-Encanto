@@ -1,0 +1,46 @@
+<div class="container my-4" style="max-width: 820px;">
+  <h2 class="titulo-secao">Produtos de exemplo</h2>
+
+  @if (!dev) {
+    <p class="text-muted">Disponível apenas no modo de desenvolvimento.</p>
+  } @else {
+    <p class="text-muted">
+      Envia os doces abaixo para a API (<code>POST /api/produto</code>).
+      Produtos com o mesmo nome já cadastrado são pulados, então pode clicar mais de uma vez.
+    </p>
+
+    @if (seed.erro()) {
+      <div class="alert alert-danger">{{ seed.erro() }}</div>
+    }
+    @if (seed.resultado(); as r) {
+      <div class="alert alert-success">
+        <b>{{ r.criados.length }}</b> cadastrado(s)
+        @if (r.jaExistiam.length) { · {{ r.jaExistiam.length }} já existia(m) }
+        — <a routerLink="/vitrine">ver vitrine</a> · <a routerLink="/busca">ver todos</a>
+      </div>
+    }
+
+    <button class="btn btn-doce mb-3" (click)="seed.enviar()" [disabled]="seed.enviando()">
+      {{ seed.enviando() ? 'Enviando...' : 'Enviar ' + seed.produtos.length + ' produtos para a API' }}
+    </button>
+
+    <div class="table-responsive">
+      <table class="table table-sm align-middle">
+        <thead class="table-light">
+          <tr><th>Nome</th><th class="text-end">Valor</th><th class="text-end">Promo</th><th class="text-center">Estoque</th><th class="text-center">Destaque</th></tr>
+        </thead>
+        <tbody>
+          @for (p of seed.produtos; track p.nome) {
+            <tr>
+              <td>{{ p.nome }}</td>
+              <td class="text-end">{{ p.valor | currency:'BRL' }}</td>
+              <td class="text-end">{{ p.valorPromo > 0 ? (p.valorPromo | currency:'BRL') : '—' }}</td>
+              <td class="text-center">{{ p.quantidade }}</td>
+              <td class="text-center">{{ p.destaque || '—' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

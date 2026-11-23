@@ -1,0 +1,46 @@
+<div class="container my-4">
+  @if (detalhe.carregando()) {
+    <div class="text-center py-5"><div class="spinner-border text-danger" role="status"></div></div>
+  } @else if (detalhe.produto(); as p) {
+    <div class="row g-4 align-items-center">
+      <div class="col-md-5">
+        <img [src]="foto(p)" (error)="$any($event.target).src = 'doces/sem-foto.svg'"
+             class="img-fluid rounded shadow-sm" [alt]="p.nome">
+      </div>
+      <div class="col-md-7">
+        <h2 class="titulo-secao">{{ p.nome }}</h2>
+        <p class="text-muted">{{ p.descritivo }}</p>
+
+        @if (p.valorPromo > 0) {
+          <p class="mb-1 text-muted">de <s>{{ p.valor | currency:'BRL' }}</s></p>
+          <h4 class="preco">por {{ p.valorPromo | currency:'BRL' }}</h4>
+        } @else {
+          <h4 class="preco">{{ p.valor | currency:'BRL' }}</h4>
+        }
+
+        @if (p.quantidade > 0) {
+          <div class="d-flex align-items-center gap-2 my-3">
+            <label for="qtd" class="form-label mb-0">Quantidade:</label>
+            <input id="qtd" type="number" class="form-control" style="width: 90px"
+                   [(ngModel)]="quantidade" min="1" [max]="p.quantidade">
+            <small class="text-muted">({{ p.quantidade }} disponíveis)</small>
+          </div>
+          <button class="btn btn-doce btn-lg px-4" (click)="comprar()">Comprar</button>
+        } @else {
+          <span class="badge bg-secondary fs-6 my-3">Sem estoque</span>
+        }
+
+        <div class="mt-3"><a routerLink="/" class="link-secondary">&larr; Voltar à vitrine</a></div>
+      </div>
+    </div>
+  } @else {
+    <div class="text-center py-5">
+      @if (detalhe.erro()) {
+        <p class="text-muted">Ocorreu um erro, tente mais tarde!</p>
+      } @else {
+        <p class="text-muted">Produto não encontrado.</p>
+      }
+      <a routerLink="/" class="btn btn-doce">Voltar à vitrine</a>
+    </div>
+  }
+</div>

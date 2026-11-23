@@ -1,0 +1,11 @@
+node_modules
+dist
+.angular
+.git
+.vscode
+web09
+api
+docs
+docker-compose.yml
+*.md
+!README.md

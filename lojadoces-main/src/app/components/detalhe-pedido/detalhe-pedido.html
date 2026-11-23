@@ -1,0 +1,36 @@
+<div class="container my-4" style="max-width: 760px;">
+  @if (api.carregando()) {
+    <div class="text-center py-5"><div class="spinner-border text-danger" role="status"></div></div>
+  } @else if (api.pedido(); as pedido) {
+    <h2 class="titulo-secao">Pedido #{{ pedido.codigoPedido }}</h2>
+    <p class="text-muted">
+      Data: {{ pedido.dataPedido | date:'dd/MM/yyyy' }}
+      @if (pedido.entrega) { · Entrega: {{ pedido.entrega }} }
+    </p>
+
+    @if (itens().length > 0) {
+      <ul class="list-group mb-3">
+        @for (item of itens(); track item.produto.codigo) {
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="my-0">{{ item.produto.nome }}</h6>
+              <small class="text-muted">Quantidade: {{ item.qtd }}</small>
+            </div>
+            <span class="text-muted">{{ valorItem(item) | currency:'BRL' }}</span>
+          </li>
+        }
+      </ul>
+    } @else if (pedido.obs) {
+      <!-- Pedido feito em outro navegador: só temos o resumo salvo na API -->
+      <p class="border rounded p-3 bg-light">{{ pedido.obs }}</p>
+    }
+
+    <h4>Total: <span class="total">{{ pedido.valorTotal | currency:'BRL' }}</span></h4>
+    <a routerLink="/pedidos" class="btn btn-doce mt-3">Voltar aos pedidos</a>
+  } @else {
+    <div class="text-center py-5">
+      <p class="text-muted">{{ api.erro() ? 'Ocorreu um erro, tente mais tarde!' : 'Pedido não encontrado.' }}</p>
+      <a routerLink="/pedidos" class="btn btn-doce">Voltar aos pedidos</a>
+    </div>
+  }
+</div>

@@ -1,0 +1,31 @@
+<div class="container py-4">
+  <div class="d-flex align-items-center flex-wrap gap-3 mb-4">
+    <a routerLink="/" class="btn btn-outline-secondary">&larr; Voltar</a>
+    @if (termo()) {
+      <h2 class="mb-0 titulo-busca">
+        Pesquisa por: <b>{{ termo() }}</b>
+        @if (!busca.carregando()) { <small class="text-muted fs-6">({{ busca.produtos().length }})</small> }
+      </h2>
+    } @else {
+      <h2 class="mb-0 titulo-busca">Todos os produtos</h2>
+    }
+  </div>
+
+  @if (busca.carregando()) {
+    <div class="text-center"><div class="spinner-border text-danger" role="status"></div></div>
+  } @else if (busca.erro()) {
+    <div class="alert alert-warning text-center">Ocorreu um erro, tente mais tarde!</div>
+  } @else if (busca.produtos().length === 0) {
+    <p class="text-center text-muted">
+      @if (termo()) { Nenhum produto encontrado para "{{ termo() }}". } @else { Nenhum produto cadastrado. }
+    </p>
+  }
+
+  <div class="row g-4">
+    @for (produto of busca.produtos(); track produto.codigo) {
+      <div class="col-6 col-md-4 col-lg-3">
+        <app-card-produto [produto]="produto" />
+      </div>
+    }
+  </div>
+</div>

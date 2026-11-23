@@ -1,0 +1,33 @@
+<div class="container d-flex justify-content-center my-5">
+  <div class="card p-4 shadow-sm" style="max-width: 420px; width: 100%;">
+    <h3 class="text-center mb-2 titulo-secao">Criar nova senha</h3>
+    <p class="text-center text-muted small mb-4">Use a senha atual ou a temporária <b>Senha1234</b>.</p>
+
+    @if (erroForm() || api.alterarSenha.erro() || api.login.erro()) {
+      <div class="alert alert-danger py-2">{{ erroForm() || api.alterarSenha.erro() || api.login.erro() }}</div>
+    }
+
+    <form (ngSubmit)="alterar()">
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input id="email" name="email" type="email" class="form-control" [(ngModel)]="email" autocomplete="email">
+      </div>
+      <div class="mb-3">
+        <label for="senhaAtual" class="form-label">Senha atual / temporária</label>
+        <input id="senhaAtual" name="senhaAtual" type="password" class="form-control" [(ngModel)]="senhaAtual">
+      </div>
+      <div class="mb-3">
+        <label for="novaSenha" class="form-label">Nova senha</label>
+        <input id="novaSenha" name="novaSenha" type="password" class="form-control" [(ngModel)]="novaSenha" autocomplete="new-password">
+      </div>
+      <div class="mb-3">
+        <label for="confirmar" class="form-label">Confirmar nova senha</label>
+        <input id="confirmar" name="confirmar" type="password" class="form-control" [(ngModel)]="confirmar" autocomplete="new-password">
+      </div>
+      <button type="submit" class="btn btn-doce w-100"
+              [disabled]="api.alterarSenha.enviando() || api.login.enviando()">Salvar nova senha</button>
+    </form>
+
+    <div class="text-center mt-3"><a routerLink="/login">Voltar ao login</a></div>
+  </div>
+</div>

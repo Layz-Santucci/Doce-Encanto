@@ -1,0 +1,12 @@
+services:
+  lojinha:
+    build: ./lojinha
+    container_name: lojinha-api
+    ports:
+      - "8081:8081"
+    environment:
+      # banco SQLite fica fora do container, em ./data/lojinha.db
+      SPRING_DATASOURCE_URL: jdbc:sqlite:/data/lojinha.db
+    volumes:
+      - ./data:/data
+    restart: unless-stopped

@@ -1,0 +1,25 @@
+#paginaCesta {
+  max-width: 900px;
+}
+
+.foto-item {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+}
+
+.link-item {
+  color: inherit;
+  text-decoration: none;
+}
+
+.total {
+  color: var(--rosa-escuro);
+}
+
+@media (max-width: 576px) {
+  .foto-item {
+    width: 50px;
+    height: 50px;
+  }
+}

@@ -1,0 +1,43 @@
+<div class="container my-4">
+  <h2 class="mb-4 text-center titulo-secao">Meus Pedidos</h2>
+
+  @if (!sessao.cliente()) {
+    <div class="text-center py-4">
+      <p class="text-muted">Entre na sua conta para ver seus pedidos.</p>
+      <a routerLink="/login" [queryParams]="{ voltar: '/pedidos' }" class="btn btn-doce">Entrar</a>
+    </div>
+  } @else if (pedidos().length === 0) {
+    <div class="text-center py-4">
+      <p class="text-muted">Você ainda não fez pedidos.</p>
+      <a routerLink="/" class="btn btn-doce">Ir para a vitrine</a>
+    </div>
+  } @else {
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Pedido</th>
+            <th>Data</th>
+            <th>Itens</th>
+            <th class="text-end">Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (pedido of pedidos(); track pedido.codigoPedido) {
+            <tr>
+              <td>#{{ pedido.codigoPedido }}</td>
+              <td>{{ pedido.dataPedido | date:'dd/MM/yyyy' }}</td>
+              <td>{{ pedido.itens.length }}</td>
+              <td class="text-end">{{ pedido.valorTotal | currency:'BRL' }}</td>
+              <td class="text-end">
+                <a [routerLink]="['/pedido', pedido.codigoPedido]" class="btn btn-sm btn-outline-secondary">Detalhes</a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="text-muted small text-center">Mostrando os pedidos feitos neste navegador.</p>
+  }
+</div>

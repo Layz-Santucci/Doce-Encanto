@@ -1,0 +1,31 @@
+@let p = produto();
+<div class="card h-100 card-vitrine">
+  <a [routerLink]="['/produto', p.codigo]">
+    <img [src]="foto(p)" (error)="$any($event.target).src = 'doces/sem-foto.svg'"
+         class="card-img-top" [alt]="p.nome">
+  </a>
+  <div class="card-body text-center d-flex flex-column">
+    <h5 class="card-title">
+      <a [routerLink]="['/produto', p.codigo]" class="link-produto">{{ p.nome }}</a>
+    </h5>
+
+    @if (p.valorPromo > 0) {
+      <p class="card-text mb-3">
+        <small class="text-muted">de <s>{{ p.valor | currency:'BRL' }}</s></small><br>
+        <span class="preco-promo">por {{ p.valorPromo | currency:'BRL' }}</span>
+      </p>
+    } @else {
+      <p class="card-text text-muted mb-3">{{ p.valor | currency:'BRL' }}</p>
+    }
+
+    <div class="mt-auto">
+      @if (p.quantidade > 0) {
+        <button class="btn btn-doce w-100" (click)="comprar()" [disabled]="adicionado()">
+          {{ adicionado() ? 'Adicionado! ✓' : 'Comprar' }}
+        </button>
+      } @else {
+        <span class="badge bg-secondary w-100 py-2">Sem estoque</span>
+      }
+    </div>
+  </div>
+</div>

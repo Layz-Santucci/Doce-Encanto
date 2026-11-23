@@ -1,3 +1,12 @@
+# Dependências e builds
 node_modules/
-.angular/
 dist/
+.angular/
+target/
+
+# Bancos SQLite locais (cada um gera o seu; o seed popula)
+*.db
+
+# Editores
+.vscode/
+.idea/

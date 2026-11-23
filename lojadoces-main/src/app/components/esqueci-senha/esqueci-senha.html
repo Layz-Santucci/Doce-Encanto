@@ -1,0 +1,27 @@
+<div class="container d-flex justify-content-center my-5">
+  <div class="card p-4 shadow-sm" style="max-width: 420px; width: 100%;">
+    <h3 class="text-center mb-4 titulo-secao">Esqueci minha senha</h3>
+
+    @if (resposta()) {
+      <div class="alert alert-success">
+        {{ resposta() }}
+        <hr>
+        Use a senha temporária <b>Senha1234</b> para criar uma nova senha.
+      </div>
+      <a routerLink="/alterar-senha" [queryParams]="{ email }" class="btn btn-doce w-100">Criar nova senha</a>
+    } @else {
+      @if (api.resetarSenha.erro()) {
+        <div class="alert alert-danger py-2">{{ api.resetarSenha.erro() }}</div>
+      }
+      <form (ngSubmit)="reenviarSenha()">
+        <div class="mb-3">
+          <label for="emailRecuperacao" class="form-label">Informe o seu e-mail</label>
+          <input id="emailRecuperacao" name="email" type="email" class="form-control" [(ngModel)]="email" required>
+        </div>
+        <button type="submit" class="btn btn-doce w-100" [disabled]="!email || api.resetarSenha.enviando()">ok</button>
+      </form>
+    }
+
+    <div class="text-center mt-3"><a routerLink="/login">Voltar ao login</a></div>
+  </div>
+</div>

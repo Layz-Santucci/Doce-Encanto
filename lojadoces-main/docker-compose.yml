@@ -1,0 +1,42 @@
+# Doce Encanto completo: API do professor (api/, porta 8081) + front Angular (porta 4200) + doces de exemplo.
+#   docker compose up -d --build
+name: doce-encanto
+
+services:
+  api:
+    build: ./api
+    container_name: lojinha-api
+    ports:
+      - "8081:8081"
+    environment:
+      # banco SQLite fora do container, em ./api/data/lojinha.db (criado na primeira vez)
+      SPRING_DATASOURCE_URL: jdbc:sqlite:/data/lojinha.db
+    volumes:
+      - ./api/data:/data
+    restart: unless-stopped
+
+  front:
+    build: .
+    container_name: doce-encanto-front
+    ports:
+      - "4200:4000"
+    environment:
+      # hosts aceitos pelo servidor do Angular; acrescente o IP se for abrir de outro dispositivo
+      NG_ALLOWED_HOSTS: localhost,127.0.0.1
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  # Cadastra os doces de exemplo via POST /api/produto (pula os que já existem) e encerra.
+  seed:
+    image: node:22-alpine
+    working_dir: /app
+    command: ["node", "seed/seed.mjs"]
+    environment:
+      API_URL: http://api:8081/api
+    volumes:
+      - ./seed:/app/seed:ro
+      - ./src/app/data:/app/src/app/data:ro
+    depends_on:
+      - api
+    restart: "no"

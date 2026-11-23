@@ -1,0 +1,52 @@
+<div class="container my-5" id="paginaLogin">
+  <div class="row g-4 justify-content-center">
+    <!-- Já tenho cadastro -->
+    <div class="col-md-6 col-lg-5">
+      <div class="card p-4 shadow-sm h-100">
+        <h3 class="mb-4 titulo-secao">Já tenho cadastro</h3>
+
+        @if (cadastrado()) {
+          <div class="alert alert-success py-2">Cadastro realizado! Faça login.</div>
+        }
+        @if (voltar()) {
+          <div class="alert alert-info py-2">Entre na sua conta para finalizar o pedido.</div>
+        }
+        @if (erroForm() || api.login.erro()) {
+          <div class="alert alert-danger py-2">
+            {{ erroForm() || api.login.erro() }}
+            @if (erroForm() === 'E-mail ou senha incorretos.') {
+              <br><small>Recebeu a senha temporária? <a routerLink="/alterar-senha" [queryParams]="{ email }">Crie uma nova senha</a>.</small>
+            }
+          </div>
+        }
+
+        <form (ngSubmit)="fazerLogin()">
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input id="email" type="email" class="form-control" [(ngModel)]="email" name="email" autocomplete="email">
+          </div>
+          <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input id="senha" type="password" class="form-control" [(ngModel)]="senha" name="senha" autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn btn-doce w-100" [disabled]="api.login.enviando()">
+            {{ api.login.enviando() ? 'Entrando...' : 'Entrar' }}
+          </button>
+        </form>
+
+        <div class="text-center mt-3">
+          <a routerLink="/esqueci-senha">Esqueci minha senha</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ainda não tenho cadastro -->
+    <div class="col-md-6 col-lg-5">
+      <div class="card p-4 shadow-sm h-100 d-flex flex-column justify-content-center text-center">
+        <h3 class="mb-3 titulo-secao">Ainda não tenho cadastro</h3>
+        <p class="text-muted">Crie sua conta para acompanhar seus pedidos.</p>
+        <a routerLink="/cadastro" class="btn btn-outline-danger">Clique aqui</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+.card-vitrine {
+  border: none;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.card-vitrine:hover {
+  transform: translateY(-5px);
+}
+
+.card-vitrine img {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.link-produto {
+  color: inherit;
+  text-decoration: none;
+}
+
+.link-produto:hover {
+  color: var(--rosa-escuro);
+}
+
+.preco-promo {
+  color: var(--rosa-escuro);
+  font-weight: bold;
+}
+
+@media (max-width: 576px) {
+  .card-vitrine img {
+    height: 130px;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+  }
+}

@@ -1,0 +1,31 @@
+<!-- Banner principal com imagem de fundo -->
+<header class="hero-vitrine d-flex align-items-center">
+  <div class="container text-center text-white">
+    <h1 class="display-4 fw-bold">Doces artesanais feitos com carinho</h1>
+    <p class="lead mb-4">Navegue pela vitrine e descubra nossos doces</p>
+    <a routerLink="/busca" class="btn btn-lg btn-doce">Ver todos os produtos</a>
+  </div>
+</header>
+
+<!-- Grade de produtos em destaque (GET /api/produto/vitrine) -->
+<section class="py-5 fundo-secao">
+  <div class="container">
+    <h2 class="text-center mb-5 titulo-secao">Mais Pedidos</h2>
+
+    @if (vitrine.isLoading()) {
+      <div class="text-center"><div class="spinner-border text-danger" role="status"></div></div>
+    } @else if (vitrine.error()) {
+      <div class="alert alert-warning text-center">Ocorreu um erro, tente mais tarde!</div>
+    } @else if (vitrine.value().length === 0) {
+      <p class="text-center text-muted">Não existem produtos na vitrine!</p>
+    }
+
+    <div class="row g-4">
+      @for (produto of vitrine.value(); track produto.codigo) {
+        <div class="col-6 col-md-4 col-lg-3">
+          <app-card-produto [produto]="produto" />
+        </div>
+      }
+    </div>
+  </div>
+</section>

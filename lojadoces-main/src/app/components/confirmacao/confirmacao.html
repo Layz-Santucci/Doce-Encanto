@@ -1,0 +1,17 @@
+@if (dialogo.aberto(); as d) {
+  <div class="fundo" (click)="dialogo.responder(false)"></div>
+  <div class="caixa" role="dialog" aria-modal="true" aria-labelledby="titulo-confirmacao">
+    <div class="topo-caixa">
+      <span class="icone" aria-hidden="true">{{ d.perigo ? '⚠️' : '🍬' }}</span>
+      <h5 id="titulo-confirmacao" class="mb-0">{{ d.titulo }}</h5>
+    </div>
+    <p class="mensagem">{{ d.mensagem }}</p>
+    <div class="d-flex justify-content-end gap-2">
+      @if (d.cancelar) {
+        <button type="button" class="btn btn-outline-secondary px-4" (click)="dialogo.responder(false)">{{ d.cancelar }}</button>
+      }
+      <button #confirmar type="button" class="btn px-4" [class.btn-doce]="!d.perigo" [class.btn-danger]="d.perigo"
+              (click)="dialogo.responder(true)">{{ d.confirmar }}</button>
+    </div>
+  </div>
+}

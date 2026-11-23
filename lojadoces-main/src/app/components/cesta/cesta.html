@@ -1,0 +1,70 @@
+<div class="container my-4" id="paginaCesta">
+  <h2 class="text-center mb-4 titulo-secao">Minha Cesta de Compras</h2>
+
+  @if (cesta.itens().length === 0) {
+    <div class="text-center py-5">
+      <p class="text-muted">Sua cesta está vazia.</p>
+      <a routerLink="/" class="btn btn-doce mt-2">Voltar à vitrine</a>
+    </div>
+  } @else {
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead class="table-light">
+          <tr>
+            <th colspan="2">Item</th>
+            <th class="text-center">Qtd</th>
+            <th class="text-end">Valor</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of cesta.itens(); track item.produto.codigo) {
+            <tr>
+              <td style="width: 90px">
+                <img [src]="foto(item.produto)"
+                     (error)="$any($event.target).src = 'doces/sem-foto.svg'"
+                     [alt]="item.produto.nome" class="rounded foto-item">
+              </td>
+              <td>
+                <a [routerLink]="['/produto', item.produto.codigo]" class="fw-bold link-item">{{ item.produto.nome }}</a><br>
+                <small class="text-muted">{{ precoFinal(item.produto) | currency:'BRL' }} / unidade</small>
+              </td>
+              <td class="text-center text-nowrap">
+                <button class="btn btn-sm btn-outline-secondary" (click)="cesta.alterarQtd(item.produto.codigo, item.qtd - 1)"
+                        [disabled]="item.qtd <= 1" aria-label="Diminuir">−</button>
+                <span class="px-2">{{ item.qtd }}x</span>
+                <button class="btn btn-sm btn-outline-secondary" (click)="cesta.alterarQtd(item.produto.codigo, item.qtd + 1)"
+                        [disabled]="item.qtd >= item.produto.quantidade" aria-label="Aumentar">+</button>
+              </td>
+              <td class="text-end fw-bold text-nowrap">{{ valorItem(item) | currency:'BRL' }}</td>
+              <td class="text-end">
+                <button class="btn btn-sm btn-outline-danger" (click)="cesta.remover(item.produto.codigo)" aria-label="Remover">✕</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="3">Total</th>
+            <th class="text-end fs-5 total">{{ cesta.total() | currency:'BRL' }}</th>
+            <th></th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    @if (gravarPedido.erro()) {
+      <div class="alert alert-danger text-center">{{ gravarPedido.erro() }}</div>
+    }
+
+    <div class="d-flex flex-wrap justify-content-between gap-2 mt-3">
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-danger" (click)="limpar()">Limpar cesta</button>
+        <a routerLink="/" class="btn btn-outline-secondary">Continuar comprando</a>
+      </div>
+      <button class="btn btn-doce btn-lg px-4" (click)="finalizar()" [disabled]="gravarPedido.enviando()">
+        {{ gravarPedido.enviando() ? 'Enviando...' : 'Finalizar pedido' }}
+      </button>
+    </div>
+  }
+</div>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#fff5f7"/>
+  <rect x="10" y="10" width="380" height="280" rx="18" fill="none" stroke="#ff6f91" stroke-width="4" stroke-dasharray="12 8"/>
+  <text x="200" y="135" text-anchor="middle" font-size="64">🍬</text>
+  <text x="200" y="190" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#6b3e2e">sem foto</text>
+  <text x="200" y="225" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#ff6f91">Doce Encanto</text>
+</svg>

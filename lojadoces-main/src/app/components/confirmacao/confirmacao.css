@@ -1,0 +1,49 @@
+.fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(107, 62, 46, 0.45); /* marrom-choco translúcido */
+  z-index: 2000;
+  animation: aparecer 0.15s ease-out;
+}
+
+.caixa {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(420px, calc(100vw - 32px));
+  background: var(--creme);
+  border-top: 6px solid var(--rosa-doce);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  padding: 1.5rem;
+  z-index: 2001;
+  animation: subir 0.18s ease-out;
+}
+
+.topo-caixa {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+  color: var(--rosa-escuro);
+  font-weight: bold;
+}
+
+.icone {
+  font-size: 1.6rem;
+}
+
+.mensagem {
+  color: var(--marrom-choco);
+  white-space: pre-line; /* permite quebrar linhas no texto */
+  margin-bottom: 1.25rem;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; }
+}
+
+@keyframes subir {
+  from { opacity: 0; transform: translate(-50%, -45%); }
+}

@@ -1,0 +1,6 @@
+node_modules/
+.angular/
+dist/
+# API (banco local e build do Maven)
+api/data/
+api/target/

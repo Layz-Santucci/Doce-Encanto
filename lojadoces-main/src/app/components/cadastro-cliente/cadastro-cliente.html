@@ -1,0 +1,62 @@
+<!-- id usado no container principal (seletor por id no CSS) -->
+<div class="container my-5" id="paginaCadastro">
+  <div class="card p-4 shadow-sm mx-auto form-cadastro" style="max-width: 640px;">
+    <h3 class="text-center mb-4">Criar Conta</h3>
+
+    @if (erroForm() || api.cadastrar.erro()) {
+      <div class="alert alert-danger py-2">{{ erroForm() || api.cadastrar.erro() }}</div>
+    }
+
+    <form #form="ngForm" (ngSubmit)="cadastrar(form)" novalidate>
+      <div class="row">
+        <!-- classe "campo-cadastro" repetida em cada grupo (seletor por classe / apelido) -->
+        <div class="col-12 campo-cadastro">
+          <label for="nome" class="form-label">Nome completo *</label>
+          <input id="nome" name="nome" type="text" class="form-control" [(ngModel)]="dados.nome"
+                 required #nome="ngModel" [class.is-invalid]="nome.invalid && nome.touched">
+        </div>
+
+        <div class="col-md-6 campo-cadastro">
+          <label for="email" class="form-label">E-mail *</label>
+          <input id="email" name="email" type="email" class="form-control" [(ngModel)]="dados.email"
+                 required email #email="ngModel" [class.is-invalid]="email.invalid && email.touched">
+        </div>
+
+        <div class="col-md-6 campo-cadastro">
+          <label for="telefone" class="form-label">Telefone</label>
+          <input id="telefone" name="telefone" type="tel" class="form-control" [(ngModel)]="dados.telefone">
+        </div>
+
+        <div class="col-md-6 campo-cadastro">
+          <label for="senha" class="form-label">Senha * <small class="text-muted">(mín. 6)</small></label>
+          <input id="senha" name="senha" type="password" class="form-control" [(ngModel)]="dados.senha"
+                 required minlength="6" #senha="ngModel" [class.is-invalid]="senha.invalid && senha.touched">
+        </div>
+
+        <div class="col-md-6 campo-cadastro">
+          <label for="confirmarSenha" class="form-label">Confirmar senha *</label>
+          <input id="confirmarSenha" name="confirmarSenha" type="password" class="form-control"
+                 [(ngModel)]="confirmarSenha" required>
+        </div>
+
+        <div class="col-md-6 campo-cadastro">
+          <label for="documento" class="form-label">CPF *</label>
+          <input id="documento" name="documento" type="text" inputmode="numeric" class="form-control"
+                 placeholder="000.000.000-00" [(ngModel)]="dados.documento"
+                 required #cpf="ngModel" [class.is-invalid]="cpf.invalid && cpf.touched">
+        </div>
+
+        <div class="col-md-6 campo-cadastro">
+          <label for="logradouro" class="form-label">Endereço</label>
+          <input id="logradouro" name="logradouro" type="text" class="form-control" [(ngModel)]="dados.logradouro">
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-doce w-100 mt-2" [disabled]="api.cadastrar.enviando()">
+        {{ api.cadastrar.enviando() ? 'Enviando...' : 'Cadastrar' }}
+      </button>
+    </form>
+
+    <p class="text-center mt-3 mb-0">Já tem conta? <a routerLink="/login">Entrar</a></p>
+  </div>
+</div>
